@@ -16,7 +16,35 @@ namespace Tetris
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Form3 first = new Form3();
+            DateTime end1 = DateTime.Now + TimeSpan.FromSeconds(1);
+            first.Show();
+            while (end1 > DateTime.Now)
+            {
+                Application.DoEvents();
+            }
+            Form4 second = new Form4();
+            DateTime end = DateTime.Now + TimeSpan.FromSeconds(4);
+            second.Show();
+            while (end > DateTime.Now)
+            {
+                Application.DoEvents();
+            }
+
+            {
+                Application.DoEvents();
+                first.Close();
+                first.Dispose();
+                second.Close();
+                second.Dispose();
+                Application.Run(new Start());
+            
+             
+      
+                
+
+            }
         }
     }
 }

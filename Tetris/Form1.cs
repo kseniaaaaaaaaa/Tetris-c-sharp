@@ -14,28 +14,22 @@ namespace Tetris
 {
     public partial class Form1 : Form
     {
-        
-        
+
         string playerName;
-        
         public Form1()
         {
             InitializeComponent();
             //if (!File.Exists(RecordsController.recordPath))
-                //File.Create(RecordsController.recordPath);
-            playerName = Microsoft.VisualBasic.Interaction.InputBox("Введите имя игрока","Настройка игрока","Новый игрок");
-            if(playerName == "")
-            {
-                playerName = "Новый игрок";
-            }
+            //File. Create(RecordsController.recordPath);
+            playerName = "Игрок по умолчанию"; // Задаем имя игрока по умолчанию
             this.KeyUp += new KeyEventHandler(keyFunc);
             Init();
         }
+       
 
         public void Init()
         {
-            //RecordsController.ShowRecords(label3);
-            this.Text = "Тетрис: Текущий игрок - " + playerName;
+            
             MapController.size = 25;
             MapController.score = 0;
             MapController.linesRemoved = 0;
@@ -92,7 +86,8 @@ namespace Tetris
             }
         }
 
-        
+
+
         private void update(object sender, EventArgs e)
         {
             MapController.ResetArea();
@@ -103,17 +98,17 @@ namespace Tetris
             else
             {
                 MapController.Merge();
-                MapController.SliceMap(label1,label2);
+                MapController.SliceMap(label1, label2);
                 timer1.Interval = MapController.Interval;
-                MapController.currentShape.ResetShape(3,0);
+                MapController.currentShape.ResetShape(3, 0);
                 if (MapController.Collide())
                 {
                     //RecordsController.SaveRecords(playerName);
                     MapController.ClearMap();
                     timer1.Tick -= new EventHandler(update);
                     timer1.Stop();
-                    MessageBox.Show("Ваш результат: " + MapController.score);
-                    Init();
+                    //MessageBox.Show("Ваш результат: " + MapController.score);
+                    //Init(); // Уберите комментарий перед этой строкой
                 }
             }
             MapController.Merge();
@@ -160,6 +155,19 @@ namespace Tetris
             MessageBox.Show(infoString,"Справка");
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
